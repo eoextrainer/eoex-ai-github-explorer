@@ -14,16 +14,26 @@ services:
 
   backend:
     build: ./backend
-    command: bash -c "source venv/bin/activate && python main.py"
+    command: npm run start
     volumes:
       - ./backend:/app
     ports:
-      - "8000:8000"
+      - "3001:3001"
     environment:
-      - DATABASE_URL=postgresql://explorer:explorerpass@db:5432/explorer_db
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=postgresql://explorer:Password123@db:5432/explorer_db
+      - CORS_ORIGIN=*
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend/akibai-explorer-frontend
+    command: npm run dev -- --host 0.0.0.0
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/akibai-explorer-frontend:/app
 
 volumes:
   explorer_pgdata:

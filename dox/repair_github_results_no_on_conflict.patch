@@ -1,0 +1,17 @@
+--- backend/src/services/githubDb.service.ts
++++ backend/src/services/githubDb.service.ts
+@@ export async function saveGithubResults(results: { url: string; status: number }[])
+-  await db.query(`
+-    INSERT INTO github_results (url, status)
+-    VALUES ${values}
+-    ON CONFLICT (url) DO NOTHING;
+-  `);
++  for (const r of results) {
++    await db.query(`
++      INSERT INTO github_results (url, status)
++      SELECT $1, $2
++      WHERE NOT EXISTS (
++        SELECT 1 FROM github_results WHERE url = $1
++      );
++    `, [r.url, r.status]);
++  }

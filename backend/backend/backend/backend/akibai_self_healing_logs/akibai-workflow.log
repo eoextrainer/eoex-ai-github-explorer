@@ -1,30 +1,30 @@
 SUCCESS: Creating Python venv
-SAVEPOINT: Backend venv and dependencies installed | 2025-12-25 05:13:07 | HEAD
+SAVEPOINT: Backend venv and dependencies installed | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
 SUCCESS: .env file created
-SAVEPOINT: .env checked/created | 2025-12-25 05:13:07 | HEAD
+SAVEPOINT: .env checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
 SUCCESS: backend/main.py created
-SAVEPOINT: backend/main.py checked/created | 2025-12-25 05:13:07 | HEAD
+SAVEPOINT: backend/main.py checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
 SUCCESS: docker-compose.yml created
-SAVEPOINT: docker-compose.yml checked/created | 2025-12-25 05:13:07 | HEAD
+SAVEPOINT: docker-compose.yml checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
 SUCCESS: Vite React app scaffolded
-SAVEPOINT: Frontend scaffolded | 2025-12-25 05:13:07 | HEAD
-SAVEPOINT: frontend/brandkit.css checked/created | 2025-12-25 05:13:07 | HEAD
-SAVEPOINT: frontend/App.jsx checked/created | 2025-12-25 05:13:07 | HEAD
-SUCCESS: scripts/discover_github_repos.sh created
-SAVEPOINT: discovery script checked/created | 2025-12-25 05:13:07 | HEAD
-[2025-12-25 05:13:07] Starting PostgreSQL via Docker
+SAVEPOINT: Frontend scaffolded | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
+SAVEPOINT: frontend/brandkit.css checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
+SAVEPOINT: frontend/App.jsx checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
+ERROR: dox/discover_github_repos.sh not found! Please add the script to the dox folder.
+SAVEPOINT: discovery script checked/created | 2025-12-25 06:46:43 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
+[2025-12-25 06:46:43] Starting PostgreSQL via Docker
 ERROR: Starting PostgreSQL via Docker (see akibai_self_healing_logs/docker_up.log)
-[2025-12-25 05:13:08] Initializing DB
+[2025-12-25 06:46:45] Initializing DB
 ERROR: Initializing DB (see akibai_self_healing_logs/init_db.log)
-[2025-12-25 05:13:08] Starting backend server
+[2025-12-25 06:46:45] Starting backend server
 SUCCESS: Starting backend server
-[2025-12-25 05:13:08] Building frontend
+[2025-12-25 06:46:45] Building frontend
 ERROR: Building frontend (see akibai_self_healing_logs/frontend_build.log)
-[2025-12-25 05:13:08] Starting frontend preview
+[2025-12-25 06:46:45] Starting frontend preview
 SUCCESS: Starting frontend preview
-[2025-12-25 05:13:10] Starting Akibai Explorer workflow iteration 5
+[2025-12-25 06:46:47] Starting Akibai Explorer workflow iteration 5
 SUCCESS: backend folder present
 SUCCESS: frontend folder present
 SUCCESS: scripts folder present
-SAVEPOINT: Folders checked/created | 2025-12-25 05:13:10 | HEAD
-[2025-12-25 05:13:10] Creating Python venv
+SAVEPOINT: Folders checked/created | 2025-12-25 06:46:47 | f6c4509e22ee82d65e302a661bbfd28087dee5e4
+[2025-12-25 06:46:47] Creating Python venv

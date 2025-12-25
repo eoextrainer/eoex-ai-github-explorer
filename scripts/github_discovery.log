@@ -1,0 +1,4 @@
+jue 25 dic 2025 06:52:11 CET: ERROR: {"error":"getaddrinfo EAI_AGAIN db","details":null}
+jue 25 dic 2025 06:54:52 CET: ERROR: {"error":"there is no unique or exclusion constraint matching the ON CONFLICT specification","details":null}
+jue 25 dic 2025 07:01:58 CET: ERROR: {"error":"there is no unique or exclusion constraint matching the ON CONFLICT specification","details":null}
+jue 25 dic 2025 07:30:33 CET: Batch search success

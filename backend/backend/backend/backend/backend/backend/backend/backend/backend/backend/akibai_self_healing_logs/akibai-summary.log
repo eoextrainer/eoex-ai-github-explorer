@@ -3,7 +3,7 @@ SUCCESS: .env file created
 SUCCESS: backend/main.py created
 SUCCESS: docker-compose.yml created
 SUCCESS: Vite React app scaffolded
-SUCCESS: scripts/discover_github_repos.sh created
+ERROR: dox/discover_github_repos.sh not found! Please add the script to the dox folder.
 ERROR: Starting PostgreSQL via Docker (see akibai_self_healing_logs/docker_up.log)
 ERROR: Initializing DB (see akibai_self_healing_logs/init_db.log)
 SUCCESS: Starting backend server

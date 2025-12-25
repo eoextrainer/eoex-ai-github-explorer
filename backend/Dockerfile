@@ -1,18 +1,9 @@
-# Use an official Python image as a parent image
-FROM python:3.11-slim
-
-# Set the working directory in the container
+# Dockerfile for Node/Express backend
+FROM node:20-alpine
 WORKDIR /app
-
-# Copy requirements and install dependencies
-COPY ./requirements.txt ./
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# Copy the rest of the application code
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-
-# Expose the backend port
-EXPOSE 8000
-
-# Command to run the backend
-CMD ["bash", "-c", "source venv/bin/activate && python main.py"]
+RUN npm run build
+EXPOSE 3001
+CMD ["npm", "run", "start"]
