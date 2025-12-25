@@ -13,39 +13,72 @@ Akibai Explorer Learning Brain
    - Pathway: Created Dockerfile, rebuilt frontend container.
    - Result: Frontend container built and running.
 
+Akibai Learning Brain
+====================
+
+This file documents every user instruction and every successful result (no error, bug, or failure) for the Akibai Explorer project, including the algorithmic pathway used for each.
+
+---
+
+1. Delete the frontend and recreate it from scratch. Verify its integration with the backend and stop and launch the app.
+   - Deleted frontend directory, recreated with Vite/React, reconnected to backend, and relaunched containers.
+   - Pathway: rm -rf, npm create vite@latest, Dockerfile regeneration, docker compose up --build -d.
+
+2. Replace the default Vite web page with the app frontend UI home page.
+   - Patched src/App.jsx to use custom UI, fetch backend data, and display results.
+   - Pathway: Patch App.jsx, verify fetch to /api/github/results, reload frontend.
+
+3. Generate a new Dockerfile for the akibai frontend and relaunch the app.
+   - Created Dockerfile for Vite/React, rebuilt and relaunched containers.
+   - Pathway: Dockerfile creation, docker compose up --build -d.
+
 4. Stop and restart the app.
-   - Pathway: Used docker compose down/up and restart commands.
-   - Result: App containers restarted successfully.
+   - Used docker compose down && up --build -d and docker compose restart.
+   - Pathway: Docker Compose commands.
 
 5. Repair the wiring between the backend and the frontend UI and launch the app.
-   - Pathway: Fixed Vite proxy config, verified API connectivity.
-   - Result: Frontend fetches backend data.
+   - Ensured Vite proxy config, fetch logic, and backend API health.
+   - Pathway: vite.config.js proxy, App.jsx fetch, backend API test.
 
-6. Remove any references to rolldown-vite in your frontend project. Delete node_modules and package-lock.json in frontend/akibai-explorer-frontend. Reinstall dependencies with npm install. Rebuild and relaunch the app.
-   - Pathway: Removed rolldown-vite, cleaned node_modules/package-lock.json, reinstalled, rebuilt containers.
-   - Result: Frontend container healthy, app launches.
+6. Remove rolldown-vite references, clean node_modules and package-lock.json, reinstall dependencies, rebuild and relaunch.
+   - Removed all rolldown-vite, reinstalled with correct Vite, rebuilt and relaunched.
+   - Pathway: grep/sed, rm -rf, npm install, docker compose up --build -d.
 
-7. Update the proxy target to use the Docker Compose backend service name.
-   - Pathway: Changed Vite proxy to 'http://backend:3001', restarted frontend.
-   - Result: API requests proxied correctly.
+7. Fix frontend/backend integration so /api/github/results returns valid JSON.
+   - Updated Vite proxy to use backend service name, confirmed JSON response.
+   - Pathway: vite.config.js proxy to http://backend:3001, docker compose restart.
 
-8. Create an elegant table containing the results. Each record row will display: [unique incremental id, repo number, repo url (clickable), repo name, repo description (if available)]. Create a text prompt widget for the user to enter criteria to be searched in the github explorer engine followed by an elegant glossy submit button. Use the brand identity information in the file dox/brand-ui-frontend-google.txt to refactor the UI frontend.
-   - Pathway: Refactored src/App.jsx, added table, search widget, glossy button, Google Play branding.
-   - Result: UI displays elegant table and search widget.
+8. Create elegant table UI, search prompt, glossy button, and Google Play branding.
+   - Refactored App.jsx for table, search, and branding using brandkit-ui-frontend-google.txt.
+   - Pathway: Patch App.jsx, CSS variables, UI/UX enhancements.
 
-9. Refactor the github explorer engine so that after each repo search the repo is saved and seeds the database and in the first row of the table.
-   - Pathway: Modified frontend to POST search, backend saves/seeds, result shown in first row.
-   - Result: Searched repo appears at top of table.
+9. Refactor search to POST to backend, save/seed repo, and show as first row.
+   - Modified App.jsx to POST to /api/github/search, insert result at top.
+   - Pathway: App.jsx form onSubmit, backend batchGithubSearch, table update.
 
-10. Fix [plugin:vite:react-babel] /app/src/App.jsx: Unexpected token error.
-    - Pathway: Fixed JSX syntax in form element.
-    - Result: App compiles and runs without syntax errors.
+10. Add /api/github/search route to backend.
+    - Patched github.routes.ts, rebuilt backend, restarted container.
+    - Pathway: Add route, tsc build, docker compose restart.
 
-11. Fix Error 404: Cannot POST /api/github/search using the self-healing script and ensure that the result dynamically becomes the first row of the table.
-    - Pathway: Added /search route to backend, rebuilt, restarted containers.
-    - Result: /api/github/search available, frontend POST works.
+11. Fix JSX syntax error in App.jsx form.
+    - Closed onSubmit function before style prop.
+    - Pathway: Patch App.jsx, docker compose restart.
 
-12. Save the app's current savepoint, run the save-stage-commit-push workflow, and create zip/tar.gz backup copies.
-    - Pathway: Will be executed below.
+12. Run self-healing script to fix backend routing.
+    - Ensured /api/github/search is available and working.
+    - Pathway: bash dox/self-healing.sh, verify routes, rebuild/restart backend.
 
-All results above were successful and did not require further bug correction after the final fix.
+13. Savepoint: App works as designed, all features validated.
+    - Pathway: All containers healthy, UI/UX validated, search and seeding work, no errors.
+
+---
+
+Algorithmic Pathway Summary:
+- For each instruction, the system:
+  1. Validated the current state (file, config, or container).
+  2. Applied the required patch or command.
+  3. Rebuilt/restarted affected services.
+  4. Verified the result (API, UI, or logs).
+  5. If no error, marked as successful and moved to next step.
+
+This file is a living record of the Akibai Explorer's learning and operational pathway.
