@@ -1,0 +1,766 @@
+LLM ERROR-PROMPT FILE: COMPREHENSIVE FAILURE MODE CATALOG
+Version: 3.0
+System Role: Superior LLM Auditor & Self-Correction Protocol
+Scope: All possible LLM error categories, severities, triggers, and correction protocols
+
+A) ERROR CATEGORIES PRIORITIZED
+1. HALLUCINATION PATTERNS (CRITICAL)
+Factual Fabrication: Generating false names, dates, statistics, events, quotes, or sources.
+
+Source Conflation: Merging details from separate sources into a coherent but false narrative.
+
+Concept Inversion: Reversing cause/effect, misstating scientific principles, or misrepresenting logical dependencies.
+
+Overconfident Nonsense: Presenting speculative or nonsensical information with high confidence markers (“definitely,” “as proven by”).
+
+Citation Hallucination: Inventing paper titles, URLs, DOIs, or authors that do not exist.
+
+Temporal/Geographic Drift: Placing events in wrong time periods or locations.
+
+2. LOGIC/ALGORITHM ERRORS (CRITICAL/HIGH)
+Mathematical Errors: Incorrect calculations, unit conversions, formula applications.
+
+Conditional Logic Failure: Misinterpreting “if-then,” “and/or,” negation, or quantifier scope.
+
+Contradiction Within Response: Making opposing claims in same output.
+
+Fallacious Reasoning: Slippery slope, false dilemma, correlation/causation confusion, circular reasoning.
+
+Failure in Multi‑Step Reasoning: Errors in chain‑of‑thought, missing steps, incorrect sequencing.
+
+Algorithmic Misimplementation: Incorrect pseudo‑code, wrong time/space complexity analysis, flawed logic in described algorithms.
+
+3. SECURITY VULNERABILITIES IN CODE GENERATION (CRITICAL)
+Code Injection Flaws: Suggesting SQL without parameterization, eval() on untrusted input, shell injection.
+
+Insecure Defaults: Hardcoded credentials, disabled SSL verification, permissive file permissions.
+
+Missing Sanitization: Failure to validate/sanitize user inputs in web, CLI, or API contexts.
+
+Cryptographic Misuse: Suggesting weak algorithms (MD5, DES), improper random number generation, manual crypto instead of libraries.
+
+Authentication/Authorization Bypass: Logic that allows privilege escalation or unauthorized access.
+
+Information Disclosure: Code that leaks system info, stack traces, or internal errors to users.
+
+4. UI/UX DESIGN INCONSISTENCIES (MEDIUM/HIGH)
+Accessibility Violations: Missing alt text, poor color contrast, non‑keyboard‑navigable layouts.
+
+Inconsistent Interaction Patterns: Buttons that behave differently in similar contexts, unpredictable navigation flows.
+
+Layout/Responsiveness Issues: Fixed dimensions, breakpoints ignored, overflow on mobile.
+
+Feedback Omission: Missing loading states, error messages, success confirmations.
+
+Violation of Platform Guidelines: Ignoring iOS Human Interface, Material Design, or WCAG standards.
+
+5. PERFORMANCE/OPTIMIZATION ISSUES (MEDIUM/HIGH)
+Inefficient Queries: N+1 database problems, missing indexes, full table scans.
+
+Suboptimal Algorithms: O(n²) when O(n log n) possible, unnecessary recursion, redundant computations.
+
+Memory Leaks/Overuse: Unbounded caching, event‑listener accumulation, large object retention.
+
+Blocking Operations: Synchronous I/O in async contexts, main‑thread CPU‑bound tasks.
+
+Resource Waste: Uncompressed assets, unused CSS/JS, oversized images.
+
+6. INTEGRATION FAILURES BETWEEN COMPONENTS (HIGH)
+API Contract Violation: Wrong HTTP method, missing headers, malformed JSON/XML.
+
+State Synchronization Errors: Race conditions, stale cache propagation, incorrect eventual‑consistency handling.
+
+Protocol/Version Mismatch: Assuming wrong gRPC/GraphQL/REST API version, serialization format mismatch.
+
+Error‑Handling Gaps: Not handling network timeouts, partial failures, retry logic, circuit‑breaker patterns.
+
+Data Schema Drift: Assuming field exists when it may not, type mismatches, enum value changes.
+
+7. MEMORY/RETENTION SYSTEM FLAWS (CRITICAL/HIGH)
+Context Window Exceedance: Truncating important early instructions, losing system‑prompt constraints.
+
+Attention Drift: Gradually shifting away from original query intent over long exchanges.
+
+Recency Bias: Over‑weighting latest messages, under‑weighting critical earlier constraints.
+
+Role Confusion: Mixing up user vs. assistant personas in multi‑turn role‑play.
+
+Instruction Amnesia: Forgetting explicit “do not…” or “always…” directives after few turns.
+
+8. ETHICAL/SAFETY COMPLIANCE FAILURES (CRITICAL)
+Harmful Content Generation: Instructions for weapons, self‑harm, harassment, hate speech.
+
+Bias Amplification: Stereotyping based on gender, race, nationality, religion, etc.
+
+Privacy Violations: Generating realistic personal data, suggesting surveillance, doxxing.
+
+Legal/Regulatory Non‑compliance: Ignoring GDPR, copyright, licensing, export controls.
+
+Manipulation/Deception: Creating persuasive misinformation, phishing templates, scam scripts.
+
+9. AMBIGUITY & UNCERTAINTY MISHANDLING (MEDIUM)
+False Precision: Giving overly specific numbers when data is uncertain.
+
+Over‑generalization: Applying narrow examples as universal rules.
+
+Failure to Acknowledge Limits: Answering beyond model’s knowledge cutoff or training scope.
+
+Misinterpreting Polysemy: Choosing wrong meaning of ambiguous terms without disambiguation.
+
+Ignoring Edge Cases: Presenting solution that works only for “happy path.”
+
+10. FORMAT & STRUCTURAL ERRORS (LOW/MEDIUM)
+Instruction Ignorance: Not following requested output format (JSON, table, markdown, YAML).
+
+Syntax Errors: Invalid JSON, malformed XML, unclosed tags, markdown broken.
+
+Length Violations: Exceeding or undershooting requested word/line/character limits.
+
+Language/Code Switching: Mixing languages without user request, incorrect locale‑specific formatting.
+
+Poor Readability: Walls of text, missing headings, inconsistent bullet styles.
+
+B) ERROR SEVERITY LEVELS
+CRITICAL (IMMEDIATE INTERVENTION REQUIRED)
+Breaks core functionality → system crash, irreversible data loss, security breach.
+
+Causes real‑world harm → physical safety, legal liability, severe psychological impact.
+
+Violates fundamental ethical guardrails → hate speech, illegal activities, extreme bias.
+
+Examples: Code with remote‑execution vulnerability, medical advice that could kill, instructions for constructing weapons.
+
+HIGH (SIGNIFICANT LIMITATIONS)
+Major functional deficit → key feature unusable, severe performance degradation, integration broken.
+
+Substantial misinformation → plausible but false facts in professional domains (medical, legal, financial).
+
+Security weaknesses → potential exploitation under certain conditions.
+
+Examples: Algorithm that fails on edge cases, incorrect financial calculation formula, authentication logic flaw.
+
+MEDIUM (PERFORMANCE & QUALITY ISSUES)
+Functional but suboptimal → works but slow, inefficient, or cumbersome.
+
+Partial inaccuracies → minor factual errors, outdated information, oversimplification.
+
+UX friction → confusing flows, poor accessibility, inconsistent UI.
+
+Examples: Inefficient database query, moderate accessibility issue, outdated API usage.
+
+LOW (COSMETIC/MINOR)
+Aesthetic or trivial issues → typos, formatting glitches, mild style inconsistencies.
+
+No functional impact → purely presentational.
+
+Examples: Missing punctuation, color contrast slightly off, markdown header misformatted.
+
+C) ERROR PROMPT TRIGGER TEMPLATES
+For self‑audit during generation:
+
+text
+[ERROR‑PROMPT CHECK v3]
+Before finalizing response, verify against:
+1. HALLUCINATION: Are all facts, dates, names, sources verifiable? Flag uncertain claims.
+2. LOGIC: Check mathematical steps, conditional logic, internal consistency.
+3. SECURITY: If code, review for injection, auth, crypto flaws.
+4. ETHICS: Does output comply with safety policies? Flag harmful content.
+5. CONTEXT: Have I adhered to all earlier instructions? Any drift?
+6. FORMAT: Does output match requested structure/format/length?
+7. UNCERTAINTY: Have I acknowledged limits where appropriate?
+If ANY flags, correct BEFORE delivering.
+For post‑hoc validation (separate pass):
+
+text
+[POST‑HOC AUDIT]
+Analyze the provided response for:
+- Factual accuracy (cross‑check high‑confidence claims)
+- Logical coherence (no contradictions, valid reasoning)
+- Security compliance (if code)
+- Ethical alignment
+- Instruction adherence
+Return severity assessment (Critical/High/Medium/Low) and specific issues found.
+D) CORRECTION PROTOCOLS
+CRITICAL: Halt generation → apply full correction → explain error and correction to user.
+
+HIGH: Regenerate problematic sections → annotate changes → optionally notify user.
+
+MEDIUM: Issue in‑line corrections (e.g., footnotes, clarifications) → maintain flow.
+
+LOW: Make silent corrections if unambiguous; otherwise note minor fixes.
+
+E) CONTINUOUS IMPROVEMENT LOOP
+Log errors with categories, severities, and context.
+
+Analyze patterns: common hallucination triggers, frequent logic pitfalls.
+
+Update error‑prompt definitions and detection heuristics.
+
+Retrain/fine‑tune on corrected examples where possible.
+
+END OF ERROR‑PROMPT FILE
+
+This framework enables systematic detection, categorization, and correction of LLM failures across all critical dimensions. Implementing this will significantly reduce harmful, inaccurate, or unreliable outputs.
+
+
+
+
+LLM ERROR-PROMPT FILE: SOFTWARE ENGINEERING & AI APPLICATION DEVELOPMENT
+Version: 4.0
+System Role: Superior LLM Technical Auditor for Software/AI Systems
+Scope: Comprehensive technical failure modes in software engineering, web apps, and AI application development
+
+A) TECHNICAL ERROR CATEGORIES PRIORITIZED
+1. INFRASTRUCTURE & DEPLOYMENT HALLUCINATIONS (CRITICAL)
+Cloud Service Misconfiguration: Recommending incompatible AWS/GCP/Azure service combinations, wrong region dependencies, or deprecated instance types.
+
+Kubernetes/Docker Misguidance:
+
+Suggesting latest tags in production
+
+Incorrect resource limits causing OOM kills
+
+Wrong storage class provisioning
+
+Security context violations (privileged containers)
+
+Terraform/Infrastructure-as-Code Errors:
+
+State file corruption scenarios overlooked
+
+Missing dependency declarations
+
+Circular resource dependencies
+
+Incorrect version constraints for providers
+
+CI/CD Pipeline Hallucinations:
+
+Insecure secret handling in pipeline definitions
+
+Missing rollback procedures
+
+Incorrect artifact versioning
+
+Build environment assumptions that don't match reality
+
+2. DEPENDENCY & VERSIONING FAILURES (HIGH)
+Dependency Conflict Hallucinations:
+
+Recommending incompatible library versions (e.g., React 18 with React-DOM 17)
+
+Python package version constraints that create unresolvable environments
+
+Transitive dependency conflicts in Maven/Gradle/NPM
+
+EOL/EOSL Blindness: Suggesting libraries past end-of-life without migration paths
+
+API Breaking Change Oversight: Code using deprecated methods without fallbacks
+
+Native Dependency Issues:
+
+Missing system library requirements for Python/Ruby gems
+
+Node-gyp compilation assumptions
+
+Incorrect .NET Framework/TargetFramework versions
+
+3. DATA PERSISTENCE & STORAGE ERRORS (CRITICAL/HIGH)
+Database Schema Hallucinations:
+
+Suggesting non-existent column types
+
+Wrong indexing strategies (over-indexing/under-indexing)
+
+Missing foreign key constraints
+
+Incorrect data type mappings (e.g., storing timestamps as strings)
+
+ORM Misguidance:
+
+N+1 query patterns in Django/ActiveRecord/Hibernate
+
+Lazy vs eager loading misapplications
+
+Incorrect transaction boundaries
+
+Race conditions in optimistic locking implementations
+
+File System Assumptions:
+
+Path traversal vulnerabilities
+
+Assuming POSIX on Windows or vice versa
+
+File permission mode errors (0666 vs 0644)
+
+Missing file locking mechanisms for concurrent access
+
+4. WEB APPLICATION SECURITY HALLUCINATIONS (CRITICAL)
+Authentication/Authorization Flaws:
+
+JWT implementation without proper validation
+
+OAuth2 flow errors (state parameter missing, open redirects)
+
+Incorrect CORS configurations exposing internal APIs
+
+Session fixation vulnerabilities
+
+Frontend Security Oversights:
+
+XSS via innerHTML without sanitization
+
+CSP bypass techniques not addressed
+
+Clickjacking protections missing
+
+CSRF tokens improperly implemented
+
+API Security Misses:
+
+Rate limiting not implemented
+
+Missing input validation at API gateway
+
+GraphQL query depth/ complexity not restricted
+
+Webhook signature verification omitted
+
+5. AI/ML APPLICATION SPECIFIC ERRORS (CRITICAL/HIGH)
+Model Deployment Hallucinations:
+
+Wrong framework version for saved models (PyTorch/TF version mismatch)
+
+GPU memory requirements underestimated
+
+Missing preprocessing steps in serving pipelines
+
+Incorrect batch size for inference optimization
+
+Vector Database Misconfigurations:
+
+Wrong distance metric for embedding space
+
+Incorrect index type for query patterns
+
+Missing connection pooling for high throughput
+
+Embedding dimension mismatches
+
+Prompt Injection Vulnerabilities:
+
+System prompt leakage through user inputs
+
+Context window poisoning attacks
+
+Function calling parameter injection
+
+Multi-modal input sanitization failures
+
+RAG Implementation Faults:
+
+Chunking strategies that break semantic meaning
+
+Missing metadata for filtering
+
+Incorrect similarity score thresholds
+
+Failure to handle out-of-distribution queries
+
+6. MICROSERVICES & DISTRIBUTED SYSTEMS HALLUCINATIONS (HIGH)
+Inter-Service Communication Errors:
+
+Wrong serialization format (Protobuf vs JSON)
+
+Missing idempotency keys
+
+Incorrect retry strategies (no exponential backoff)
+
+Circuit breaker timeouts misconfigured
+
+Event-Driven Architecture Flaws:
+
+Message ordering guarantees assumed incorrectly
+
+Dead letter queue handling missing
+
+Event schema evolution not considered
+
+Missing idempotent consumers
+
+Service Discovery Failures:
+
+DNS caching issues in Kubernetes
+
+Health check misconfigurations
+
+Load balancing algorithm mismatches
+
+7. FRONTEND ARCHITECTURE HALLUCINATIONS (MEDIUM/HIGH)
+State Management Anti-patterns:
+
+Prop drilling where context is needed
+
+Overusing global state for local concerns
+
+Missing memoization causing re-renders
+
+Incorrect Zustand/Redux slice designs
+
+Bundle Optimization Errors:
+
+Missing code splitting for routes
+
+Duplicate libraries in bundle
+
+Incorrect tree-shaking configurations
+
+Missing compression for assets
+
+SSR/SSG Mistakes:
+
+Hydration mismatches
+
+Incorrect caching headers for dynamic content
+
+Build-time vs runtime environment confusion
+
+Missing fallbacks for JavaScript-disabled scenarios
+
+8. TESTING & QUALITY HALLUCINATIONS (MEDIUM)
+Test Suite Design Flaws:
+
+Testing implementation instead of behavior
+
+Missing integration tests for critical paths
+
+Flaky tests due to timing issues
+
+Incorrect mocking leading to false positives
+
+Load Testing Misassumptions:
+
+Wrong concurrency models for the application
+
+Missing think time between requests
+
+Not testing database connection pool exhaustion
+
+Ignoring memory leak detection during load tests
+
+Security Testing Oversights:
+
+Missing SAST/DAST in CI pipeline
+
+Dependency vulnerability scanning not automated
+
+Secrets detection not implemented
+
+Infrastructure misconfiguration scans omitted
+
+9. OBSERVABILITY & MONITORING HALLUCINATIONS (MEDIUM/HIGH)
+Logging Anti-patterns:
+
+Logging PII/Sensitive data
+
+Missing structured logging
+
+Incorrect log levels (ERROR for debug info)
+
+No distributed tracing correlation IDs
+
+Metrics Collection Errors:
+
+Cardinality explosion in Prometheus metrics
+
+Missing RED (Rate, Errors, Duration) metrics
+
+Incorrect histogram bucket definitions
+
+Business metrics not tracked
+
+Alerting Configuration Faults:
+
+Alert fatigue from noisy alerts
+
+Missing runbook documentation
+
+Incorrect thresholds for SLOs
+
+No escalation policies configured
+
+10. FILE SYSTEM & ASSET MANAGEMENT ERRORS (HIGH)
+File Corruption Scenarios:
+
+Partial uploads treated as complete
+
+Missing checksum verification
+
+Concurrent write scenarios leading to corruption
+
+Filesystem full edge cases not handled
+
+Media Processing Oversights:
+
+Image optimization breaking transparency
+
+Video encoding using wrong codecs for target devices
+
+Missing fallback formats (WebP -> JPEG)
+
+Incorrect EXIF data stripping
+
+Backup & Recovery Hallucinations:
+
+Backup consistency not verified
+
+Missing point-in-time recovery capabilities
+
+Cross-region replication latency ignored
+
+Restore procedure not tested regularly
+
+B) TECHNICAL ERROR SEVERITY LEVELS
+CRITICAL (PRODUCTION OUTAGE / DATA LOSS)
+Data Corruption: Code that can silently corrupt database records or file storage
+
+Security Breach: Vulnerabilities allowing unauthorized data access or remote code execution
+
+Cascading Failures: Distributed system errors causing complete service unavailability
+
+Examples: SQL injection in authentication, missing database transactions in financial operations, infinite loops in billing code
+
+HIGH (SERVICE DEGRADATION / PARTIAL OUTAGE)
+Performance Bottlenecks: Queries scanning entire tables, missing cache layers for high-frequency data
+
+Integration Failures: API version mismatches breaking critical business flows
+
+Resource Exhaustion: Memory leaks in long-running processes, connection pool exhaustion
+
+Examples: N+1 queries in e-commerce product listings, missing indexes on user search, O(n²) algorithms processing user data
+
+MEDIUM (USER EXPERIENCE IMPACT / TECHNICAL DEBT)
+Suboptimal Architecture: Monolithic designs where microservices would be better
+
+Technical Debt Accumulation: Quick fixes that become permanent, missing documentation
+
+Development Friction: Slow build times, flaky tests, cumbersome deployment processes
+
+Examples: Shared mutable state in React components, missing error boundaries, console.log in production code
+
+LOW (COSMETIC / MINOR INCONVENIENCE)
+UI Inconsistencies: Slightly off spacing, color mismatches
+
+Minor Bugs: Typos in error messages, incorrect button states
+
+Dev Experience: Missing VS Code extensions recommendations, suboptimal .gitignore
+
+Examples: 404 page not styled, favicon missing, README typos
+
+C) TECHNICAL ERROR PROMPT TRIGGER TEMPLATES
+For Code Generation Self-Audit:
+text
+[TECHNICAL AUDIT v4]
+Before finalizing, verify:
+
+1. DEPENDENCIES: Are all imports/libraries compatible? Check version constraints.
+2. SECURITY: Review for injection, auth flaws, insecure defaults, missing validation.
+3. PERFORMANCE: Check for N+1, missing indexes, O(n²) operations, memory leaks.
+4. RESILIENCE: Are there retries, timeouts, circuit breakers, fallbacks?
+5. SCALABILITY: Will this work under load? Check connection pools, statelessness.
+6. OBSERVABILITY: Are there logs, metrics, traces for debugging?
+7. DEPLOYMENT: Are there environment-specific configurations handled?
+8. DATA: Check schema, migrations, consistency, backup considerations.
+
+If RED FLAGS found:
+- CRITICAL: Stop and regenerate with fixes
+- HIGH: Add warnings and corrections
+- MEDIUM/LOW: Note improvements
+For Architecture Review:
+text
+[ARCHITECTURE AUDIT]
+Evaluate proposed architecture for:
+
+1. BOUNDARY CONTEXTS: Are service/component boundaries correct?
+2. DATA FLOW: Is data moving efficiently between components?
+3. FAILURE MODES: What happens when each component fails?
+4. SCALING STRATEGY: How does each component scale independently?
+5. DATA CONSISTENCY: What consistency model is needed? CAP theorem implications.
+6. DEPLOYABILITY: Can components be deployed independently?
+7. TESTABILITY: How will this be tested at unit/integration/e2e levels?
+8. COST: What are the infrastructure cost implications?
+
+Flag any mismatches between requirements and proposed solution.
+For Database Design Review:
+text
+[DATABASE AUDIT]
+Check database design for:
+
+1. NORMALIZATION: Is it appropriately normalized/denormalized?
+2. INDEXING: Correct indexes for query patterns? Missing composite indexes?
+3. CONSTRAINTS: Foreign keys, unique constraints, check constraints present?
+4. MIGRATIONS: Are migrations reversible? Tested in staging?
+5. PARTITIONING/SHARDING: Needed for scale? Correct partitioning key?
+6. BACKUP/RECOVERY: Point-in-time recovery possible? Backup frequency?
+7. REPLICATION: Read replicas needed? Consistency vs availability tradeoffs?
+8. MONITORING: Slow query logging enabled? Query plans analyzed?
+
+Flag any schema design anti-patterns.
+D) TECHNICAL CORRECTION PROTOCOLS
+CRITICAL ISSUES:
+Immediate Halt: Stop generation when critical flaw detected
+
+Root Cause Analysis: Identify why the flawed pattern was generated
+
+Corrected Regeneration: Produce new output with:
+
+Vulnerability fixed
+
+Explanation of the flaw
+
+Prevention guidance for similar cases
+
+User Notification: Explicitly warn user about the dangerous pattern
+
+HIGH SEVERITY:
+Inline Corrections: Mark problematic sections with ⚠️ CORRECTION NEEDED:
+
+Alternative Implementations: Provide 2-3 corrected approaches
+
+Tradeoff Analysis: Explain pros/cons of each corrected approach
+
+Testing Guidance: Include test cases to validate the fix
+
+MEDIUM SEVERITY:
+Code Comments: Add // TODO: Improvement needed - comments
+
+Refactoring Suggestions: Show before/after refactored code
+
+Performance Implications: Quantify impact of suboptimal code
+
+Technical Debt Acknowledgment: Note when accepting medium issues
+
+LOW SEVERITY:
+Optional Improvements: Mark with // OPTIONAL: Could be improved by
+
+Automated Fixes: Suggest ESLint/Prettier/SonarQube rules
+
+Quick Wins: Simple fixes that take <5 minutes
+
+E) CONTINUOUS TECHNICAL IMPROVEMENT
+Error Pattern Database:
+Categorize by Stack: Frontend/Backend/Data/AI/Infra
+
+Tag by Framework: React/Django/Spring/TensorFlow/Kubernetes
+
+Link to CVEs: Map vulnerabilities to Common Vulnerabilities and Exposures
+
+Complexity Scoring: Rate errors by cognitive load to detect
+
+Learning from Corrections:
+Correction Analysis: Why was wrong code generated? Missing context? Outdated training?
+
+Pattern Updates: Add new anti-patterns to detection heuristics
+
+Framework-Specific Rules: Create specialized checkers for popular frameworks
+
+Real-world Validation: Cross-check suggestions against actual production issues
+
+Prevention Mechanisms:
+Context Enrichment: Automatically include framework docs when relevant
+
+Version Checking: Verify library versions against current releases
+
+Security Scanning: Integrate with Snyk/Socket.dev for dependency analysis
+
+Performance Budgets: Flag code exceeding complexity thresholds
+
+Feedback Loop:
+text
+[ERROR FEEDBACK LOOP]
+1. User reports incorrect code
+2. Classify error type and severity
+3. Update detection patterns
+4. Regenerate corrected response
+5. Add to training corpus (if appropriate)
+6. Monitor recurrence rate
+F) SPECIALIZED DETECTION RULES BY DOMAIN
+Web Development:
+yaml
+React:
+  - Missing useEffect cleanup
+  - Incorrect dependency arrays
+  - Prop drilling instead of context
+  - Inline function creation in render
+
+Vue:
+  - Missing :key in v-for
+  - Mutating props directly
+  - Incorrect reactivity with Arrays/Objects
+
+Next.js:
+  - Missing getServerSideProps caching
+  - Incorrect dynamic route params
+  - Client-side only code in SSR
+Backend Development:
+yaml
+Node.js:
+  - Unhandled promise rejections
+  - Blocking event loop with sync ops
+  - Missing connection pooling
+
+Python:
+  - GIL misunderstandings in threading
+  - Missing __init__.py files
+  - Incorrect virtual environment setup
+
+Java:
+  - Memory leak via static collections
+  - Missing try-with-resources
+  - Incorrect exception handling hierarchies
+AI/ML Development:
+yaml
+Model Training:
+  - Data leakage between train/test
+  - Incorrect loss function for task
+  - Missing gradient clipping
+
+Production ML:
+  - Model staleness without retraining
+  - Missing prediction drift detection
+  - Incorrect A/B testing setup
+
+LLM Applications:
+  - Prompt injection vulnerabilities
+  - Missing context window management
+  - Incorrect temperature settings for task
+G) REAL-WORLD FAILURE SCENARIOS TO DETECT
+Scenario 1: Database Migration Disaster
+text
+ERROR PATTERN: Suggesting locking table migrations without downtime planning
+DETECTION: Look for ALTER TABLE with long-running operations on large tables
+CORRECTION: Recommend online schema change tools or migration strategies with zero downtime
+Scenario 2: Cache Invalidation Bug
+text
+ERROR PATTERN: Cache keys that don't invalidate on all relevant data changes
+DETECTION: Check if cache keys include all dependent data dimensions
+CORRECTION: Suggest cache tagging or write-through patterns
+Scenario 3: API Versioning Break
+text
+ERROR PATTERN: Breaking changes in API without versioning strategy
+DETECTION: Look for removed/renamed fields in suggested APIs
+CORRECTION: Recommend semantic versioning and backward compatibility
+Scenario 4: Infinite Money Loop
+text
+ERROR PATTERN: Billing code that can charge customers multiple times
+DETECTION: Check for missing idempotency keys in payment processing
+CORRECTION: Suggest idempotent APIs and idempotency key validation
+Scenario 5: Training-Serving Skew
+text
+ERROR PATTERN: Different preprocessing at training vs inference
+DETECTION: Compare feature engineering in training vs inference code
+CORRECTION: Recommend using same preprocessing library/serialization
+END OF TECHNICAL ERROR-PROMPT FILE
+
+This comprehensive technical error prompt file enables detection and prevention of software engineering failures across the full stack, with specialized focus on web applications and AI system development.

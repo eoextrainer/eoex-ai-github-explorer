@@ -1,0 +1,27 @@
+[0;34m[INFO] Building and starting EOEX Explorer...[0m
+[0;34m==> Starting PostgreSQL[0m
+
+        Can't find a suitable configuration file in this directory or any
+        parent. Are you in the right directory?
+
+        Supported filenames: docker-compose.yml, docker-compose.yaml, compose.yml, compose.yaml
+        
+[0;31m[ERROR] Starting PostgreSQL failed. See self-healing.log for details.[0m
+[0;34m==> Init DB[0m
+dox/self-healing.sh: line 405: cd: backend: No such file or directory
+[0;31m[ERROR] Init DB failed. See self-healing.log for details.[0m
+[0;34m==> Start backend[0m
+dox/self-healing.sh: eval: line 405: syntax error near unexpected token `&&'
+dox/self-healing.sh: eval: line 405: `cd backend && source venv/bin/activate && nohup uvicorn main:app --host 0.0.0.0 --port 8000 & && deactivate'
+[0;31m[ERROR] Start backend failed. See self-healing.log for details.[0m
+[0;34m==> Build frontend[0m
+dox/self-healing.sh: line 405: cd: frontend/eoex-explorer-frontend: No such file or directory
+[0;31m[ERROR] Build frontend failed. See self-healing.log for details.[0m
+[0;34m==> Start frontend preview[0m
+dox/self-healing.sh: line 405: cd: frontend/eoex-explorer-frontend: No such file or directory
+[0;32m[SUCCESS] Start frontend preview completed.[0m
+
+[0;32m==================== FINAL SUMMARY ====================[0m
+[0;32m======================================================[0m
+[0;32m[SUCCESS] EOEX Explorer is running![0m
+[0;34m[INFO] Run scripts/discover_github_repos.sh to populate the database with GitHub repos.[0m

@@ -1,0 +1,10 @@
+flask
+flask-cors
+flask-socketio
+psycopg2-binary
+requests
+openai
+python-dotenv
+aiohttp
+asyncio
+eventlet

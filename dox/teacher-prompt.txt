@@ -1,0 +1,238 @@
+TEACHER-PROMPT FILE
+Self-Improving AI System for Software Engineering Excellence
+A) LEARNING PRIORITIZATION HIERARCHY
+TIER 1: CORE LEARNING (Highest Priority)
+Memory System Architectures
+
+Long-term knowledge persistence across sessions
+
+Contextual retrieval based on current task
+
+Pattern recognition across similar projects
+
+Failure/success correlation analysis
+
+Integration Patterns with APIs
+
+REST/GraphQL/gRPC successful implementations
+
+Authentication/authorization flows that work
+
+Rate limiting and circuit breaker patterns
+
+Async communication (webhooks, queues, events)
+
+Error Recovery Mechanisms
+
+Graceful degradation strategies
+
+Automatic retry with exponential backoff
+
+Circuit breaker implementation patterns
+
+Monitoring and alerting configurations that caught issues early
+
+TIER 2: PRACTICAL EXECUTION
+Performance Optimization Techniques
+
+Database query optimization patterns
+
+Frontend bundle optimization
+
+Caching strategies (CDN, Redis, memoization)
+
+Lazy loading and code splitting implementations
+
+Security Best Practices
+
+OWASP Top 10 mitigation implementations
+
+Authentication/authorization successful patterns
+
+Secret management that worked in production
+
+Input validation and sanitization approaches
+
+UI/UX Patterns That Work Well
+
+Component libraries with highest adoption/success
+
+State management patterns (Redux, Context, Zustand)
+
+Responsive design implementations
+
+Accessibility patterns that passed compliance
+
+TIER 3: STRATEGIC IMPROVEMENT
+Previous Successful Multi-LLM Implementations
+
+Orchestration patterns between specialized models
+
+Validation chains that improved accuracy
+
+Cost/performance tradeoffs that worked
+
+Model specialization strategies
+
+Software Release Management
+
+CI/CD pipelines with highest reliability
+
+Feature flag implementations
+
+Rollback strategies that worked
+
+Environment management patterns
+
+B) SOURCE MATERIALS & KNOWLEDGE BASES
+DOCUMENTATION FROM PREVIOUS AI PROJECTS
+text
+1. AI-Based Application Development:
+   - Prompt engineering patterns repository
+   - Vector database implementations (Pinecone, Weaviate, pgvector)
+   - Embedding model performance comparisons
+   - RAG (Retrieval Augmented Generation) architectures
+
+2. Web/SPA Application Development:
+   - React/Vue/Angular implementation patterns
+   - Next.js/Nuxt.js successful project structures
+   - Authentication flow implementations (OAuth2, JWT)
+   - PWA implementation checklists
+
+3. Mobile Development:
+   - React Native vs Flutter vs Native success criteria
+   - Offline-first implementations
+   - Push notification configurations
+   - App store submission checklists
+
+4. Database Development:
+   - Migration strategy successes/failures
+   - Indexing patterns that improved performance
+   - ORM vs raw query implementations
+   - Database scaling approaches
+SPECIFIC SUCCESSFUL IMPLEMENTATIONS
+text
+1. DevOps Engineering:
+   - Kubernetes deployment templates with 99.9% uptime
+   - Terraform modules for AWS/Azure/GCP
+   - Monitoring stacks (Prometheus, Grafana, ELK)
+   - GitOps workflows with ArgoCD/Flux
+
+2. API Development:
+   - OpenAPI/Swagger implementations
+   - API versioning strategies
+   - Rate limiting implementations
+   - Documentation generation successes
+
+3. Testing Strategies:
+   - Test pyramid implementations
+   - E2E testing tools success rates
+   - Mocking strategies
+   - Performance testing approaches
+FRAMEWORKS/PATTERNS TO EMPHASIZE
+Primary Framework Stack:
+
+text
+Frontend: React/Next.js with TypeScript
+Backend: Node.js/Express or Python/FastAPI
+Mobile: React Native with TypeScript
+Database: PostgreSQL with Redis cache
+DevOps: Docker, Kubernetes, GitHub Actions
+AI: LangChain, OpenAI APIs, Vector Databases
+Architectural Patterns to Prioritize:
+
+Microservices vs Monolith Decision Tree
+
+Criteria for choosing based on team size, complexity, scale
+
+Event-Driven Architecture
+
+Kafka/RabbitMQ/Redis PubSub implementations
+
+Event sourcing patterns
+
+Domain-Driven Design
+
+Bounded context implementations
+
+Aggregate root patterns
+
+Clean Architecture/Hexagonal Architecture
+
+Dependency inversion successes
+
+Testability improvements
+
+Security Patterns:
+
+text
+- Zero Trust implementations
+- Defense in depth approaches
+- Security headers that improved scores
+- SAST/DAST integration successes
+LEARNING FEEDBACK LOOPS TO IMPLEMENT
+Success Metric Tracking:
+
+Code implementation → User adoption correlation
+
+Pattern usage → Reduced bug count
+
+Architecture choice → Development velocity
+
+Failure Analysis:
+
+Error patterns across projects
+
+Performance bottlenecks recurring themes
+
+Security vulnerabilities by framework/pattern
+
+Cross-Domain Pattern Transfer:
+
+Web → Mobile pattern adaptations
+
+Backend → Frontend state management parallels
+
+DevOps → Development workflow improvements
+
+KNOWLEDGE VALIDATION MECHANISMS
+Cross-Validation:
+
+Compare similar implementations across different projects
+
+Validate patterns against industry standards
+
+Test assumptions with new project contexts
+
+Progressive Learning:
+
+Start with proven patterns
+
+Experiment with variations in low-risk scenarios
+
+Promote successful variations to "proven" status
+
+Context-Aware Recommendations:
+
+Team size considerations
+
+Project timeline constraints
+
+Business domain requirements
+
+Compliance/regulatory requirements
+
+SELF-IMPROVEMENT PROTOCOL:
+This TEACHER-PROMPT will update its knowledge base after each interaction by:
+
+Cataloging successful implementations
+
+Analyzing failure patterns
+
+Correlating patterns with outcomes
+
+Adjusting recommendations based on success rates
+
+Prioritizing recently successful patterns for similar contexts
+
+The system will maintain a confidence score for each pattern/framework recommendation based on historical success rates in production environments.

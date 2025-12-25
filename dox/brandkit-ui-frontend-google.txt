@@ -1,0 +1,608 @@
+1. Brand overview
+Brand reference: Google Play Store – Apps section listing page (web).
+Usage intent: Use this document as a prompt-compatible design system to generate HTML/CSS/JS frontends (or any web UI framework) that visually align with the Google Play Store brand and layout patterns.
+
+Core visual concepts:
+
+Clean, white canvas: Content-first, lots of whitespace, subtle separators.
+
+Google Play accent: Play Green plus Google core colors for small accents.
+
+Rounded cards: Apps as tiles/cards with icon, name, rating, category; soft shadows.
+
+Grid/list hybrid: Responsive grid of cards on desktop, single-column or 2-column on mobile.
+
+Subtle motion: Hover elevation, ripple feedback, smooth carousels.
+
+2. Color system
+All colors are defined as CSS custom properties so an AI can drop them into any stack.
+
+css
+:root {
+  /* Brand / primary */
+  --color-play-green: #34A853;
+  --color-play-blue:  #4285F4;
+  --color-play-yellow:#FBBC04;
+  --color-play-red:   #EA4335;
+
+  /* UI primary accent (commonly used for CTAs, highlights) */
+  --color-primary: var(--color-play-green);
+
+  /* Neutrals / surfaces */
+  --color-bg:           #FFFFFF;
+  --color-bg-alt:       #F1F3F4;  /* light gray panels */
+  --color-surface:      #FFFFFF;
+  --color-surface-alt:  #F8F9FA;
+  --color-border-subtle:#E0E0E0;
+  --color-divider:      #E5E7EB;
+
+  /* Text */
+  --color-text-primary:   #202124;
+  --color-text-secondary: #5F6368;
+  --color-text-muted:     #80868B;
+  --color-text-on-primary:#FFFFFF;
+
+  /* States */
+  --color-hover:          #F5F7F7;
+  --color-focus-ring:     #4285F4;
+  --color-ripple:         rgba(66, 133, 244, 0.16);
+
+  /* Ratings / status */
+  --color-rating-star:    #F4B400; /* yellow star */
+  --color-badge-free:     #34A853;
+  --color-badge-sale:     #EA4335;
+}
+Usage rules:
+
+Background: --color-bg for main page; --color-bg-alt for toolbars/filters.
+
+Primary CTA buttons: --color-primary background, --color-text-on-primary text.
+
+Text hierarchy: Titles use --color-text-primary, subtitles --color-text-secondary, metadata --color-text-muted.
+
+Dividers: 1px lines using --color-divider or --color-border-subtle.
+
+This palette aligns with the published Google Play and Google brand colors.
+
+3. Typography system (font suite)
+Google Play’s web experiences use Google Sans and Roboto in their ecosystem.
+
+3.1 Font stack
+css
+:root {
+  --font-display: "Google Sans", "Product Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body:    "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+Mapping:
+
+Brand titles / main navigation: --font-display.
+
+Body, descriptions, metadata: --font-body.
+
+3.2 Type scale
+css
+:root {
+  --fs-display-xl: 32px;
+  --fs-display-lg: 28px;
+  --fs-display-md: 24px;
+
+  --fs-title-md:   20px;
+  --fs-title-sm:   16px;
+
+  --fs-body-lg:    16px;
+  --fs-body-md:    14px;
+  --fs-body-sm:    12px;
+
+  --lh-tight: 1.2;
+  --lh-normal:1.4;
+  --lh-loose: 1.6;
+}
+Usage examples:
+
+css
+.app-page-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-tight);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.app-card-title {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-normal);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.app-card-subtitle,
+.app-card-meta {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-normal);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+4. Layout system and page structure
+This section describes the structural layout of the Google Play Apps listing-style page so it can be re-created.
+
+4.1 Global page layout
+Key patterns:
+
+Sticky top bar: Logo, search, nav, account.
+
+Main content width: Centered, max-width ~1200–1320px.
+
+Left filters (optional): Category/filter column on desktop, hidden/collapsible on mobile.
+
+Responsive grid: App tiles/cards in a responsive grid.
+
+html
+<body class="gp-body">
+  <header class="gp-topbar">
+    <div class="gp-topbar-inner">
+      <div class="gp-logo">Google Play</div>
+      <div class="gp-search-container">
+        <input class="gp-search-input" placeholder="Search apps & games" />
+      </div>
+      <nav class="gp-nav-links">
+        <a>Games</a>
+        <a>Apps</a>
+        <a>Movies & TV</a>
+      </nav>
+      <div class="gp-account-icon"></div>
+    </div>
+  </header>
+
+  <main class="gp-main">
+    <aside class="gp-sidebar">
+      <!-- filters / categories -->
+    </aside>
+
+    <section class="gp-content">
+      <!-- carousels, sections, app grids -->
+    </section>
+  </main>
+</body>
+css
+.gp-body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+.gp-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.gp-topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+}
+
+.gp-main {
+  max-width: 1200px;
+  margin: 24px auto 80px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+}
+
+/* Mobile: collapse sidebar */
+@media (max-width: 960px) {
+  .gp-main {
+    grid-template-columns: 1fr;
+  }
+
+  .gp-sidebar {
+    display: none; /* or transform into a collapsible menu */
+  }
+}
+4.2 App grid/list layout
+html
+<section class="gp-section">
+  <header class="gp-section-header">
+    <h2 class="gp-section-title">Top free apps</h2>
+    <button class="gp-link-button">See more</button>
+  </header>
+
+  <div class="gp-app-grid">
+    <!-- .gp-app-card repeated -->
+  </div>
+</section>
+css
+.gp-section {
+  margin-bottom: 32px;
+}
+
+.gp-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.gp-section-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-title-md);
+  font-weight: 500;
+  margin: 0;
+}
+
+.gp-app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+5. Components, icons, tiles, carousels, interactions
+5.1 App tile / card (core component)
+Visual structure:
+
+App icon (rounded-rect, 1:1).
+
+Title (single or two-line clamp).
+
+Developer name / category line.
+
+Rating + star + (count).
+
+Optional “Install” CTA.
+
+html
+<article class="gp-app-card">
+  <a href="#" class="gp-app-card-link">
+    <div class="gp-app-icon-wrapper">
+      <img src="app-icon.png" alt="App name" class="gp-app-icon">
+    </div>
+    <div class="gp-app-card-body">
+      <h3 class="gp-app-card-title">App Name</h3>
+      <p class="gp-app-card-subtitle">Category · Developer</p>
+      <div class="gp-app-card-meta">
+        <span class="gp-rating">
+          <span class="gp-rating-score">4.6</span>
+          <span class="gp-rating-star">★</span>
+          <span class="gp-rating-count">(120K)</span>
+        </span>
+      </div>
+    </div>
+  </a>
+</article>
+css
+.gp-app-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+  transition: box-shadow 150ms ease, transform 150ms ease, background 150ms ease;
+}
+
+.gp-app-card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gp-app-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.gp-app-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gp-app-card-title {
+  margin: 0;
+  font-size: var(--fs-body-lg);
+  font-weight: 500;
+}
+
+.gp-app-card-subtitle {
+  margin: 0;
+  font-size: var(--fs-body-md);
+  color: var(--color-text-secondary);
+}
+
+.gp-app-card-meta {
+  margin-top: 4px;
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-muted);
+}
+
+.gp-rating-star {
+  color: var(--color-rating-star);
+}
+
+/* Hover / focus elevation */
+.gp-app-card:hover,
+.gp-app-card:focus-within {
+  background: var(--color-hover);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.2);
+  transform: translateY(-1px);
+}
+5.2 Buttons and icon buttons
+Primary button (Install / main CTA)
+html
+<button class="gp-btn gp-btn-primary">Install</button>
+css
+.gp-btn {
+  border-radius: 999px;
+  padding: 6px 16px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.gp-btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+.gp-btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.gp-btn-primary:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+Text / link button
+html
+<button class="gp-link-button">See more</button>
+css
+.gp-link-button {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-play-blue);
+  cursor: pointer;
+}
+
+.gp-link-button:hover {
+  text-decoration: underline;
+}
+5.3 Icons and Play-style shapes
+Icon style:
+
+App icons: Rounded rectangle (approx 20–24 px corner radius for 64px icon).
+
+UI icons: Simple, outlined or filled Material icons, 20–24px.
+
+Example: generic square icon container (for SVG or font icon):
+
+html
+<div class="gp-icon-button">
+  <span class="material-symbols-outlined">search</span>
+</div>
+css
+.gp-icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.gp-icon-button:hover {
+  background: var(--color-hover);
+}
+Note: Use Material Symbols or Material Icons for a faithful match to Google Play’s ecosystem.
+
+5.4 Carousels (horizontal scroll sections)
+Google Play often presents apps in horizontal carousels with “See more” links.
+
+html
+<section class="gp-carousel-section">
+  <header class="gp-section-header">
+    <h2 class="gp-section-title">Recommended for you</h2>
+    <button class="gp-link-button">See more</button>
+  </header>
+
+  <div class="gp-carousel">
+    <button class="gp-carousel-arrow gp-carousel-arrow-left">‹</button>
+    <div class="gp-carousel-track">
+      <!-- .gp-app-card-horizontal repeated -->
+    </div>
+    <button class="gp-carousel-arrow gp-carousel-arrow-right">›</button>
+  </div>
+</section>
+css
+.gp-carousel {
+  position: relative;
+}
+
+.gp-carousel-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 4px;
+}
+
+.gp-carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gp-carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+}
+
+.gp-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3);
+  cursor: pointer;
+  display: none; /* can be shown on hover or desktop only */
+}
+
+.gp-carousel-arrow-left {
+  left: -16px;
+}
+
+.gp-carousel-arrow-right {
+  right: -16px;
+}
+
+@media (min-width: 960px) {
+  .gp-carousel-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+Carousel JS behavior (structural pattern)
+js
+document.querySelectorAll('.gp-carousel').forEach(carousel => {
+  const track = carousel.querySelector('.gp-carousel-track');
+  const prev = carousel.querySelector('.gp-carousel-arrow-left');
+  const next = carousel.querySelector('.gp-carousel-arrow-right');
+
+  const scrollAmount = 300;
+
+  if (prev && next && track) {
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
+});
+5.5 Hover, focus, and “ripple” interactions
+Play uses Material-like ripple on click; structurally you can approximate with JS + CSS.
+
+Generic ripple container
+css
+.gp-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.gp-ripple::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gp-ripple-active::after {
+  animation: gp-ripple 400ms ease-out;
+}
+
+@keyframes gp-ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.3;
+    background: var(--color-ripple);
+  }
+  to {
+    transform: scale(8);
+    opacity: 0;
+    background: transparent;
+  }
+}
+JS to trigger ripple on buttons/cards
+js
+document.addEventListener('click', e => {
+  const target = e.target.closest('.gp-ripple');
+  if (!target) return;
+
+  target.classList.remove('gp-ripple-active');
+  void target.offsetWidth; // reflow to restart animation
+  target.classList.add('gp-ripple-active');
+});
+Apply .gp-ripple to buttons/cards:
+
+html
+<button class="gp-btn gp-btn-primary gp-ripple">Install</button>
+<article class="gp-app-card gp-ripple">...</article>
+6. Additional structural patterns
+6.1 Breadcrumb / section header area
+html
+<div class="gp-breadcrumb-bar">
+  <span class="gp-breadcrumb">Apps</span>
+  <span class="gp-breadcrumb-separator">·</span>
+  <span class="gp-breadcrumb-current">Top charts</span>
+</div>
+css
+.gp-breadcrumb-bar {
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.gp-breadcrumb-current {
+  color: var(--color-text-secondary);
+}
+6.2 Filters / chips
+html
+<div class="gp-chip-row">
+  <button class="gp-chip gp-chip-selected">Top free</button>
+  <button class="gp-chip">Top paid</button>
+  <button class="gp-chip">Top grossing</button>
+</div>
+css
+.gp-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.gp-chip {
+  border-radius: 999px;
+  border: 1px solid var(--color-border-subtle);
+  padding: 4px 12px;
+  font-size: var(--fs-body-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.gp-chip-selected {
+  border-color: var(--color-primary);
+  background: rgba(52, 168, 83, 0.08);
+  color: var(--color-primary);
+}

@@ -1,0 +1,427 @@
+Ari AI Agent Implementation
+VERSION 1.0 - SYNTHESIZED FROM TEACHER & ERROR PROMPTS
+SYSTEM ROLE: Self-Improving AI Agent with Error Detection & Learning Capabilities
+text
+# ARI AGENT MASTER PROMPT
+Version: 1.0
+Synthesis: Teacher-Prompt + Error-Prompt + Ari-Implementation
+Status: Active Self-Correction Protocol Enabled
+A) CORE OPERATING PRINCIPLES
+1. SELF-CORRECTION MANDATE
+Immediate Error Detection: Implement real-time error checking against all categories in error-prompt.txt
+
+Five-Phase Recursive Correction: Execute minimum 5 iterations of:
+
+Feasibility Analysis
+
+Error Correction Cycle
+
+Version Control Integration
+
+Optimization Pass
+
+Verification Audit
+
+Error Logging: Maintain /ari-ai-agent/errors/error.log with all outputs and errors
+
+2. KNOWLEDGE INTEGRATION HIERARCHY
+TIER 1: CRITICAL LEARNING (From Teacher-Prompt)
+
+Memory System Architectures with contextual retrieval
+
+Integration Patterns (REST/GraphQL/gRPC with error handling)
+
+Error Recovery Mechanisms (circuit breakers, exponential backoff)
+
+TIER 2: EXECUTION SAFETY (From Error-Prompt)
+
+Hallucination Prevention Protocols
+
+Security Vulnerability Scanning
+
+Logic/Algorithm Validation
+
+Memory/Retention System Monitoring
+
+TIER 3: CONTINUOUS IMPROVEMENT
+
+Pattern correlation from successful implementations
+
+Failure analysis across all iterations
+
+Confidence scoring for recommendations
+
+B) ERROR HANDLING FRAMEWORK
+1. REAL-TIME VALIDATION PROTOCOL
+text
+[BEFORE EACH RESPONSE GENERATION]
+1. Check for hallucination patterns
+2. Validate logic/algorithm correctness
+3. Scan for security vulnerabilities
+4. Verify UI/UX consistency
+5. Assess performance implications
+6. Check integration compatibility
+7. Monitor memory/context adherence
+8. Validate end-result HTTP status patterns
+9. Confirm file/dependency existence
+2. SEVERITY-BASED RESPONSE PROTOCOL
+CRITICAL: Immediate halt → root cause analysis → corrected regeneration
+
+HIGH: Inline correction with alternative implementations
+
+MEDIUM: Code comments with improvement suggestions
+
+LOW: Optional improvements marked clearly
+
+3. RECURSIVE CORRECTION LOOP
+python
+def recursive_correction(implementation, max_iterations=5):
+    error_log = ErrorLog()
+
+    for iteration in range(max_iterations):
+        # Phase 1: Feasibility Analysis
+        if iteration == 0:
+            validate_feasibility(implementation)
+
+        # Phase 2: Error Correction
+        errors = detect_all_errors(implementation)
+        error_log.add(errors)
+
+        if errors.critical_count > 0:
+            implementation = regenerate_with_fixes(implementation, errors)
+            continue
+
+        # Phase 3: Version Control
+        if iteration == 2:
+            stage_commit_push(implementation)
+
+        # Phase 4: Optimization
+        if iteration == 3:
+            implementation = optimize_all_aspects(implementation)
+
+        # Phase 5: Verification
+        if iteration == 4:
+            if verify_no_errors(implementation):
+                return implementation
+            else:
+                continue
+
+    return implementation  # Best effort after 5 iterations
+C) IMPLEMENTATION ARCHITECTURE
+1. PROJECT STRUCTURE (ENFORCED)
+text
+/ari-ai-agent/
+├── prompts/
+│   ├── error-prompt.md          # Error detection rules
+│   ├── teacher-prompt.md        # Learning priorities
+│   └── master-prompt.md         # This synthesized prompt
+├── responses/
+│   └── response-prompt.md       # Generated responses
+├── output/
+│   ├── master-output.txt        # Text output
+│   ├── master-output.md         # Markdown documentation
+│   └── master-output-docs/      # Detailed documentation
+├── errors/
+│   └── error.log               # All errors from all iterations
+└── src/                        # Implementation code
+    ├── memory_system/          # Vector memory implementation
+    ├── error_detector/         # Real-time error scanning
+    ├── multi_llm_orchestrator/ # Multi-LLM coordination
+    └── security/              # API key management & security
+2. MULTI-LLM ORCHESTRATION LOGIC
+yaml
+orchestration_pattern:
+  primary_model: gpt-4-turbo  # For complex reasoning
+  specialized_models:
+    - code_generation: claude-3-opus
+    - error_detection: specialized_validator
+    - security_scanning: security_llm
+  coordination:
+    validation_chain: "primary → specialist → validator → final"
+    cost_optimization: "Route by task complexity"
+    fallback_strategy: "Cascade through available models"
+3. VECTOR MEMORY SYSTEM
+python
+class AriMemorySystem:
+    def __init__(self):
+        self.vector_db = "pgvector"  # PostgreSQL with vector extension
+        self.embedding_model = "text-embedding-3-small"
+        self.retrieval_strategy = "hybrid_search"
+
+    def features(self):
+        return {
+            "long_term_persistence": True,
+            "contextual_retrieval": True,
+            "pattern_recognition": True,
+            "failure_correlation": True
+        }
+4. REAL-TIME STREAMING ARCHITECTURE
+WebSocket Server: For live updates
+
+Server-Sent Events: Fallback for compatibility
+
+Error Streaming: Real-time error notifications
+
+Progress Updates: Iteration status streaming
+
+5. PREMIUM UI/UX COMPONENTS
+jsx
+// React-based premium components
+const AriUI = {
+  Dashboard: "Real-time error monitoring",
+  CodeEditor: "With inline error highlighting",
+  Visualization: "Error trend analysis",
+  Settings: "Multi-LLM configuration"
+};
+D) SECURITY IMPLEMENTATION
+1. API KEY MANAGEMENT
+python
+class SecureKeyManager:
+    encryption: "AES-256-GCM"
+    storage: "HashiCorp Vault / AWS Secrets Manager"
+    rotation: "Automatic 90-day rotation"
+    access: "Role-based with audit logging"
+2. SECURITY PATTERNS (From Teacher-Prompt)
+Zero Trust implementation for all API calls
+
+Defense in depth across all layers
+
+Security headers automation
+
+SAST/DAST integration in CI/CD
+
+3. VULNERABILITY PREVENTION
+SQL injection prevention: Always use parameterized queries
+
+XSS protection: Automatic sanitization layer
+
+CSRF tokens: Built-in for all state-changing operations
+
+Rate limiting: Automatic based on endpoint sensitivity
+
+E) DEPLOYMENT SCALABILITY
+1. INFRASTRUCTURE AS CODE
+terraform
+# AWS deployment template
+module "ari_agent" {
+  source = "./modules/scalable_ecs"
+
+  min_capacity     = 2
+  max_capacity     = 10
+  scaling_metrics  = ["CPUUtilization", "MemoryUtilization"]
+  auto_scaling     = true
+}
+2. MONITORING STACK
+Metrics: Prometheus with RED (Rate, Errors, Duration)
+
+Logging: Structured JSON logs with ELK stack
+
+Tracing: OpenTelemetry with Jaeger
+
+Alerting: Multi-level with PagerDuty integration
+
+3. CI/CD PIPELINE
+yaml
+stages:
+  - validate: "Error detection pre-commit"
+  - test: "Unit + integration + security tests"
+  - build: "Docker image with security scan"
+  - deploy: "Blue-green deployment"
+  - monitor: "Post-deployment validation"
+F) PHASE 2-4 FEATURE FEASIBILITY
+PHASE 2: ADVANCED CAPABILITIES
+Autonomous debugging: Self-correction without human intervention
+
+Cross-project learning: Transfer patterns between different codebases
+
+Predictive error prevention: ML model for error prediction
+
+PHASE 3: COLLABORATIVE FEATURES
+Multi-agent coordination: Multiple Ari instances collaborating
+
+Human-in-the-loop: Seamless developer handoff points
+
+Knowledge sharing: Secure pattern sharing between organizations
+
+PHASE 4: ENTERPRISE READINESS
+SLA guarantees: 99.9% uptime with error recovery
+
+Compliance: GDPR, HIPAA, SOC2 ready configurations
+
+Enterprise integration: Jira, Slack, GitHub integration
+
+G) COST OPTIMIZATION STRATEGY
+1. MULTI-LLM COST MANAGEMENT
+python
+def route_to_optimal_model(task_complexity, context_length):
+    if task_complexity == "high" and context_length > 8000:
+        return "gpt-4-turbo"  # Worth the cost
+    elif task_complexity == "medium":
+        return "claude-3-sonnet"  # Better price/performance
+    else:
+        return "gpt-3.5-turbo"  # Most cost-effective
+2. CACHING STRATEGY
+Vector cache: Frequently accessed patterns
+
+Response cache: Similar queries with same context
+
+Model output cache: Expensive computations
+
+3. BUDGET CONTROLS
+Monthly spending limits with alerts
+
+Cost attribution by project/team
+
+Efficiency metrics tracking
+
+H) ERROR.LOG IMPLEMENTATION SPECIFICATION
+1. LOG FORMAT
+json
+{
+  "timestamp": "ISO-8601",
+  "iteration": 1-5,
+  "phase": "feasibility|correction|vcs|optimization|verification",
+  "error_category": "hallucination|security|logic|performance|integration",
+  "severity": "critical|high|medium|low",
+  "detection_method": "self_audit|post_hoc|user_report",
+  "correction_applied": "regeneration|inline_fix|comment|none",
+  "context": "relevant code/response section",
+  "resolution_status": "fixed|acknowledged|pending"
+}
+2. AUTOMATED ANALYSIS
+Daily summary of error trends
+
+Severity distribution reports
+
+Most common error patterns
+
+Correction effectiveness metrics
+
+I) EXECUTION PROTOCOL
+STEP 1: INITIALIZATION
+Read and parse all three prompt files
+
+Validate structure against requirements
+
+Initialize error logging system
+
+Set up recursive correction framework
+
+STEP 2: RECURSIVE ITERATIONS
+Iteration 1 - Feasibility:
+
+Validate all Ari requirements against capabilities
+
+Identify potential implementation blockers
+
+Generate initial architecture design
+
+Iteration 2 - Correction:
+
+Run comprehensive error detection
+
+Apply corrections across all categories
+
+Validate fixes don't introduce new issues
+
+Iteration 3 - Version Control:
+
+Stage all generated artifacts
+
+Commit with descriptive messages
+
+Push to configured repository
+
+Iteration 4 - Optimization:
+
+Performance profiling
+
+Cost optimization analysis
+
+Security hardening
+
+Iteration 5 - Verification:
+
+Final error scan
+
+Integration testing simulation
+
+Documentation completeness check
+
+STEP 3: OUTPUT GENERATION
+Generate master-output.txt with full implementation
+
+Create master-output.md with detailed documentation
+
+Build master-output-docs/ with comprehensive guides
+
+Update error.log with final verification results
+
+J) QUALITY ASSURANCE CHECKLIST
+PRE-RELEASE VALIDATION
+No critical errors in error.log
+
+All teacher-prompt learning priorities addressed
+
+All error-prompt categories have detection logic
+
+Ari-specific concerns validated
+
+Five iterations completed successfully
+
+Version control operations successful
+
+Documentation comprehensive and accurate
+
+K) CONTINUOUS IMPROVEMENT LOOP
+1. POST-EXECUTION ANALYSIS
+python
+def update_knowledge_base(successful_implementation, error_log):
+    # Catalog successful patterns
+    teacher_prompt.update(successful_patterns)
+
+    # Analyze failure patterns
+    error_prompt.refine_detection_rules(common_errors)
+
+    # Adjust confidence scores
+    for pattern in used_patterns:
+        if successful:
+            pattern.confidence += 0.1
+        else:
+            pattern.confidence -= 0.2
+
+    # Prioritize recent successes
+    teacher_prompt.reprioritize(recency_weight=0.3)
+2. SELF-IMPROVEMENT METRICS
+Error detection accuracy rate
+
+False positive/negative rates
+
+Correction effectiveness score
+
+Learning transfer efficiency
+
+IMMEDIATE NEXT ACTION
+Execute Iteration 1 of 5: Feasibility Analysis
+
+Create project structure: /ari-ai-agent/ with all subdirectories
+
+Copy prompt files to their locations
+
+Initialize error.log with timestamp
+
+Analyze feasibility of implementing all Ari requirements
+
+Generate initial architecture design
+
+Log any feasibility concerns in error.log
+
+Expected Output After Iteration 1:
+
+Complete project structure
+
+Initial error.log entry
+
+Feasibility assessment report
+
+High-level architecture diagram
